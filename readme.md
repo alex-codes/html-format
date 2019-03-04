@@ -54,6 +54,8 @@ Correct:
 <span class="...">Text</span>
 ```
 
+---
+
 ### 3. An element with more than one attributes must have each attribute on a separate line. Elements with zero or one attributes but long nested text should place the nested text on a separate line. There is no hard rule for what constitutes "long nested text". Use good judgement.
 
 Correct:
