@@ -41,22 +41,35 @@ Incorrect: do not place more than one element on a line.
 </form>
 ```
 
-_Justification: properly nested elements are the cornerstone for readability. More than one item per line hinders your ability to scan and pick out elements without reading an entire line; if you weren't paying attention, you probably wouldn't notice the `<input>` elements next to their labels. Blank lines between related groups of elemenets creates symmetry._
+_Justification: properly nested elements are the cornerstone for readability. More than one item per line hinders your ability to scan and pick out elements without reading an entire line; if you weren't paying attention, you probably wouldn't notice the `<input>` elements next to their labels. Blank lines between related groups of elements creates symmetry._
 
 ---
 
-### 2. An element that only zero or one attribute and short or no nested text should be contained on a single line.
+### 2. An element that only zero or one attribute should be contained on a single line. Text-based elements like `label` and `span` with long text should place the text on one or more lines. There is no hard rule for what constitutes "long  text". Use good judgement.
 
 Correct:
 
 ```
 <div class="..."></div>
 <span class="...">Text</span>
+
+<span>This is short text</span>
+
+<span>
+  This is an example of really long text. This is 
+  statement two of the really long text example.
+</span>
+```
+
+Incorrect: do not inline elements with long text.
+
+```
+<span>This is an example of really long text. This is statement two of the really long text example.</span>
 ```
 
 ---
 
-### 3. An element with more than one attributes must have each attribute on a separate line. Elements with zero or one attributes but long nested text should place the nested text on a separate line. There is no hard rule for what constitutes "long nested text". Use good judgement.
+### 3. Place each attribute on a separate line if an element has more than one attribute. 
 
 Correct:
 
@@ -64,28 +77,27 @@ Correct:
 <div
   id="..."
   class="..."
+  onClick="..."
+  contenteditable="..."
+  spellcheck="..."
   aria-labelledby="...">
 </div>
-
-<span>
-  This is an example of really long nested text.
-</span>
 ```
 
-Incorrect: do not place more than one attribute on the same line. Do not inline elements with long nested text.
+Incorrect: do not place more than one attribute on the same line. Do not inline elements with long text.
 
 ```
-<div id="..." class="..." aria-labeledby="...">
+<div id="..." class="..." onClick="..." contenteditable="..." spellcheck="..." aria-labeledby="...">
 </div>
 
-<span>This is an example of really long nested content.</span>
+<span>This is an example of really long text. This is statement two of the really long text example.</span>
 ```
 
-_Justification: multiple attributes on a single line encourages the next developer to add attributes on the same line. Eventually, an element may have so many attributes that it requires you to scroll in order to read them. Scrolling back and forth, trying to keep a mental list of attributes and their values becomes burdensome. Putting each attribute on a single line puts every attribute and their value in the same viewport, greatly improving understandability._
+_Justification: multiple attributes on a single line encourages the next developer to add new attributes on the same line because appending a new attribute to the end is easier than addressing formatting issues. Often times an element may have so many attributes that it requires you to scroll in order to read them. Trying to keep a mental list of attributes and their values while scrolling back and forth becomes burdensome. Putting each attribute on a single line places every attribute and their value in the same viewport, greatly improving understandability._
 
 ---
 
-### 4. Parent elements that are not inlined (e.g. elements that have multiple attributes) must have a blank line between the nested item and the parent.
+### 4. Parent elements that are not in-lined (e.g. due to multiple attributes) must have a blank line between the nested content and the parent's attribute list.
 
 Correct:
 
@@ -96,6 +108,14 @@ Correct:
 
   <input type="text">
 </div>
+
+<button
+  type="submit"
+  class="...">
+
+  <i class="..."></i>
+  Submit
+</button>
 ```
 
 Incorrect: do not omit the blank line between the parent and its nested content. Do not further indent the nested element(s).
@@ -106,89 +126,63 @@ Incorrect: do not omit the blank line between the parent and its nested content.
   class="...>
     <input type="text">
 </div>
-```
 
-_Justification: the blank line between the parent's attributes and the nested item help differentiate the two. Do not attempt to differentiate between the two by adding extra indentation in the children, as in the incorrect example._
-
----
-
-### 5. Sibling elements can be inlined if they each only have zero or one attribute and short nested text.
-
-Correct:
-
-```
-<span>Text</span>
-<label class="...">Text</label>
-<input type="text">
-```
-
-Incorrect: do not add excessive blank lines. Do not place single attributes on a new line.
-
-```
-<span>Text</span>
-
-<label
+<button
+  type="submit"
   class="...">
-
-  Text
-</label>
-
-<input type="text">
-```
-
----
-
-### 6. Sibling elements should have a blank line between them if they cannot be inlined (e.g. an element has multiple attributes)
-
-Correct:
-
-```
-<span>Text</span>
-<label class="...">Text</label>
-
-<input
-  type="text"
-  class="...">
-
-<button type="submit">
+  <i class="..."></i>
   Submit
 </button>
+
+<!-- there is no need for the blank line in the span -->
+
+<span>
+
+  This is an example of really long text. This is 
+  statement two of the really long text example.
+</span>
 ```
 
-Incorrect: do not place siblings next to each other if they cannot be inlined.
-
-```
-<span>Text</span>
-<label class="...">Text</label>
-<input
-  type="text"
-  class="...">
-<button type="submit">
-  Submit
-</button>
-```
+_Justification: the blank line between the parent's attributes and the nested content help differentiate them._
 
 ---
 
-### 7. Sibling elements should have a blank line between them if one contains nested content.
+### 5. Sibling elements should have a blank line between them if one cannot be in-lined (e.g. an element with multiple attributes, nested content, or long text). Otherwise, sibling elements should be in-lined.
 
 Correct:
 
 ```
 <div>
-  <div>
-    <span>Text</span>
-  </div>
+  <!-- these sibling divs have nested content, so separate them with an empty line -->
 
   <div>
     <span>Text</span>
   </div>
 
-  <div class="clearfix"></div>
+  <div>
+    <span>Text</span>
+  </div>
+
+
+  <!-- these sibling elements can all be inlined, so place them adjacent to each other -->
+  <!-- you can separate with a blank line if it creates logical groupings -->
+
+  <span>Text</span>
+  <label class="...">Text</label>
+  <input type="text">
+
+
+  <!-- below, one element has multiple attributes, so separate the siblings with an empty line -->
+
+  <label class="...">Text</label>
+
+  <input
+    type="text"
+    class="...">
 </div>
 ```
 
-Incorrect: do not place elements with nested items adjacent to each other.
+Incorrect: do not place siblings adjacent to each other if they cannot be in-lined or have nested content.
 
 ```
 <div>
@@ -198,7 +192,13 @@ Incorrect: do not place elements with nested items adjacent to each other.
   <div>
     <span>Text</span>
   </div>
-  <div class="clearfix"></div>
+  <span>Text</span>
+  <label class="...">Text</label>
+  <input type="text">
+  <label class="...">Text</label>
+  <input
+    type="text"
+    class="...">
 </div>
 ```
 
@@ -206,28 +206,34 @@ _Justification: sibling elements need room to breathe. Without the space, the ma
 
 ---
 
-### 8. Avoid unnecessary whitespace. Do not add blank lines between elements except when following the rules above. Do not add extra spaces between attributes.
+### 6. Avoid unnecessary whitespace. Do not add blank lines between elements except when following the rules above. Do not add extra spaces between attributes.
 
 ```
 <div>
   <span>Text</span>
+  <div class="..."></div>
   <span class="...">Text<span>
+  <input class="...">
 </div>
 ```
 
-Incorrect:
+Incorrect: do not add excess whitespace between attributes, whether by accident, or intentionally in order to "line up" the attributes.
 
 ```
 <div>
   <span>Text</span>
 
-  <span   class="...">Text<span>
+  <div    class=".."></div>
+  <span   class="........">Text<span>
+  <input  class="...">
 </div>
 ```
+
+_Justification: unnecessary whitespace can be a symptom of an overzealous application of these rules. A single attribute should be in-lined for overall readability. Additional spacing to line up attributes does not help readability._
 
 ---
 
-### 9. Be consistent with attribute order (e.g. type -> id -> name -> class ...). Group related attributes together.
+### 7. Be consistent with attribute order (e.g. type -> id -> name -> class ...). Group related attributes together.
 
 Correct:
 
@@ -262,11 +268,6 @@ Incorrect: do not place attributes haphazardly.
 _Justification: a consistent order among attributes promotes overall readability. Grouped attributes makes it easier to identify their relationship._
 
 ---
-
-### 10. Do not mix tabs and spaces. Pick your preference and stick with it. Enforce your choice with tooling.
-
-_Justification: copy/paste operations will maintain correct alignment that IDEs may hide._
-
 
 ## Example
 
@@ -316,7 +317,7 @@ Consider the following snippet taken from https://search.yahoo.com:
 </div>
 ```
 
-There are many readability issues in this small snippet. It is difficult to get a full understanding of how elements relate by the lack of proper nesting, and quickly scanning to find a specific element is nearly impossible. How many table rows are there? How many table cells? Where is the closing `</button>` tag? Which elements are missing `aria` attributes? How many `<li>`s are there, and what are their contents? You cannot determine any of this information without thoroughly reading the markup.
+There are many readability issues in this small snippet. It is difficult to get a full understanding of how elements relate by the lack of proper nesting, and quickly scanning to find a specific element is nearly impossible. How many table rows are there? How many table cells? Where is the closing `</button>` tag? Which elements are missing `aria` attributes? How many `<li>`s are there, and what are their contents? You cannot determine any of this information without thoroughly reading the markup, and even then, it is still challenging to keep an overall mental picture.
 
 Applying the rules above, the result should look like this:
 
@@ -438,6 +439,8 @@ Applying the rules above, the result should look like this:
 ```
 
 Yes, this adds quite a bit more vertical content to the previous snippet, which seemed rather short (vertically) in comparison. However, there was so much content packed too tightly in the old snippet, leading to dense, hard to read code. Notice how much easier it is to pick out individual elements and their relationships? Notice how much easier it is to read all of the `<input>`'s attributes and their values, and how the attributes are listed in a consistent, semi-predictable order? This is a substantial improvement in readability and understandability.
+
+Another key benefit of having tall but skinny content is how well it compliments the split screen functionality in your IDE; the ability to compare two pieces of code side-by-side on the same monitor without the need to scroll horizontally should immediately provide a small-to-moderate productivity boost. In other words: fat content requires vertical _and_ horizontal scrolling, but skinny content only requires vertical scrolling.
 
 
 ## XML/XAML/JSX
