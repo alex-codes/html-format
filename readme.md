@@ -133,21 +133,13 @@ Incorrect: do not omit the blank line between the parent and its nested content.
   <i class="..."></i>
   Submit
 </button>
-
-<!-- there is no need for the blank line in the span -->
-
-<span>
-
-  This is an example of really long text. This is 
-  statement two of the really long text example.
-</span>
 ```
 
 _Justification: the blank line between the parent's attributes and the nested content help differentiate them._
 
 ---
 
-### 5. Sibling elements should have a blank line between them if one cannot be in-lined (e.g. an element with multiple attributes, nested content, or long text). Otherwise, sibling elements should be in-lined.
+### 5. Sibling elements should have a blank line between them if one cannot be in-lined (e.g. an element with multiple attributes, nested content, or long text). Otherwise, sibling elements should be adjacent.
 
 Correct:
 
@@ -217,7 +209,7 @@ _Justification: sibling elements need room to breathe. Without the space, the ma
 </div>
 ```
 
-Incorrect: do not add excess whitespace between attributes, whether by accident, or intentionally in order to "line up" the attributes.
+Incorrect: do not add excess whitespace between attributes, whether by accident, or intentionally in order to "line up" the attributes. Do not add excessive blank lines.
 
 ```
 <div>
@@ -227,6 +219,14 @@ Incorrect: do not add excess whitespace between attributes, whether by accident,
   <span   class="........">Text<span>
   <input  class="...">
 </div>
+
+<!-- there is no need for the blank line in the span -->
+
+<span>
+
+  This is an example of really long text. This is 
+  statement two of the really long text example.
+</span>
 ```
 
 _Justification: unnecessary whitespace can be a symptom of an overzealous application of these rules. A single attribute should be in-lined for overall readability. Additional spacing to line up attributes does not help readability._
