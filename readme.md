@@ -52,7 +52,6 @@ Correct:
 ```
 <div class="..."></div>
 <span class="...">Text</span>
-
 <span>This is short text</span>
 
 <span>
@@ -66,6 +65,8 @@ Incorrect: do not inline elements with long text.
 ```
 <span>This is an example of really long text. This is statement two of the really long text example.</span>
 ```
+
+_Justification: in copy, it is generally recommended to keep lines of text under 70 characters in length for accessibility reasons. Longer lines increase horizontal scanning, which tires eyes more easily. The same issue exists with long lines of code._
 
 ---
 
@@ -89,11 +90,9 @@ Incorrect: do not place more than one attribute on the same line. Do not inline 
 ```
 <div id="..." class="..." onClick="..." contenteditable="..." spellcheck="..." aria-labeledby="...">
 </div>
-
-<span>This is an example of really long text. This is statement two of the really long text example.</span>
 ```
 
-_Justification: multiple attributes on a single line encourages the next developer to add new attributes on the same line because appending a new attribute to the end is easier than addressing formatting issues. Often times an element may have so many attributes that it requires you to scroll in order to read them. Trying to keep a mental list of attributes and their values while scrolling back and forth becomes burdensome. Putting each attribute on a single line places every attribute and their value in the same viewport, greatly improving understandability._
+_Justification: multiple attributes on a single line encourages the next developer to add new attributes on the same line because appending to the end is easier than addressing formatting issues. Often times an element may have so many attributes that it requires you to scroll in order to read them. Trying to keep a mental list of attributes and their values while scrolling back and forth becomes burdensome. Putting each attribute on a single line places every attribute and their value in the same viewport, greatly improving understandability._
 
 ---
 
@@ -442,6 +441,7 @@ Yes, this adds quite a bit more vertical content to the previous snippet, which 
 
 Another key benefit of having tall but skinny content is how well it compliments the split screen functionality in your IDE; the ability to compare two pieces of code side-by-side on the same monitor without the need to scroll horizontally should immediately provide a small-to-moderate productivity boost. In other words: fat content requires vertical _and_ horizontal scrolling, but skinny content only requires vertical scrolling.
 
+![Editor in split screen](/splitscreen.png)
 
 ## XML/XAML/JSX
 
