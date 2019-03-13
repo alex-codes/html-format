@@ -45,12 +45,15 @@ _Justification: properly nested elements are the cornerstone for readability. Mo
 
 ---
 
-### 2. An element that only zero or one attribute should be contained on a single line. Text-based elements like `label` and `span` with long text should place the text on one or more lines. There is no hard rule for what constitutes "long  text". Use good judgement.
+### 2. An element that has a single attribute should place the attribute on the same line as the opening tag. Text-based elements like `label` and `span` with long text should place the text on one or more lines. There is no hard rule for what constitutes "long  text". Use good judgement.
 
 Correct:
 
 ```
-<div class="..."></div>
+<div class="...">
+  <input type="text">
+</div>
+
 <span class="...">Text</span>
 <span>This is short text</span>
 
